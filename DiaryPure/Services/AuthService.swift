@@ -13,6 +13,9 @@ final class AuthService: ObservableObject {
             self.userID = savedID
             self.isSignedIn = true
         }
+        if let savedName = UserDefaults.standard.string(forKey: "appleUserName") {
+            self.userName = savedName
+        }
     }
 
     func handleSignIn(result: Result<ASAuthorization, Error>) {
@@ -37,6 +40,12 @@ final class AuthService: ObservableObject {
         case .failure(let error):
             print("Sign in with Apple failed: \(error.localizedDescription)")
         }
+    }
+
+    func skipSignIn() {
+        userID = "local"
+        isSignedIn = true
+        UserDefaults.standard.set("local", forKey: userIDKey)
     }
 
     func signOut() {

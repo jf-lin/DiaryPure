@@ -5,6 +5,7 @@ struct ConsentListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ConsentAgreement.createdAt, order: .reverse) private var agreements: [ConsentAgreement]
     @State private var showingCreate = false
+    @State private var showingJoin = false
 
     var body: some View {
         NavigationStack {
@@ -14,15 +15,24 @@ struct ConsentListView: View {
                         ConsentDetailView(agreement: agreement)
                     } label: {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(agreement.partnerName)
-                                .font(.headline)
                             HStack {
-                                Text(agreement.status == .signed ? "Signed" : "Draft")
-                                    .font(.caption)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 2)
-                                    .background(agreement.status == .signed ? Color.green.opacity(0.2) : Color.orange.opacity(0.2))
-                                    .clipShape(Capsule())
+                                Text(agreement.creatorName)
+                                Image(systemName: "arrow.left.arrow.right")
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                                Text(agreement.partnerName)
+                            }
+                            .font(.headline)
+                            HStack {
+                                statusBadge(for: agreement.status)
+                                if agreement.role == .partner {
+                                    Text("Partner")
+                                        .font(.caption)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 2)
+                                        .background(Color.blue.opacity(0.2))
+                                        .clipShape(Capsule())
+                                }
                                 Spacer()
                                 Text(agreement.createdAt, style: .date)
                                     .font(.caption)
@@ -38,15 +48,24 @@ struct ConsentListView: View {
                     ContentUnavailableView(
                         "No Agreements",
                         systemImage: "signature",
-                        description: Text("Tap + to create a consent agreement.")
+                        description: Text("Create a new agreement or join a signing session.")
                     )
                 }
             }
             .navigationTitle("Consent")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        showingCreate = true
+                    Menu {
+                        Button {
+                            showingCreate = true
+                        } label: {
+                            Label("New Agreement", systemImage: "plus")
+                        }
+                        Button {
+                            showingJoin = true
+                        } label: {
+                            Label("Join Session", systemImage: "antenna.radiowaves.left.and.right")
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -57,7 +76,26 @@ struct ConsentListView: View {
                     ConsentCreateView()
                 }
             }
+            .fullScreenCover(isPresented: $showingJoin) {
+                ConsentJoinView()
+            }
         }
+    }
+
+    @ViewBuilder
+    private func statusBadge(for status: AgreementStatus) -> some View {
+        let (text, color): (String, Color) = switch status {
+        case .draft: ("Draft", .orange)
+        case .pendingPartner: ("Pending", .yellow)
+        case .signed: ("Signed", .green)
+        case .cancelled: ("Cancelled", .red)
+        }
+        Text(text)
+            .font(.caption)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 2)
+            .background(color.opacity(0.2))
+            .clipShape(Capsule())
     }
 
     private func deleteAgreements(at offsets: IndexSet) {
@@ -69,14 +107,29 @@ struct ConsentListView: View {
 
 struct ConsentDetailView: View {
     @Bindable var agreement: ConsentAgreement
-    @State private var showingSignature = false
-    @State private var signingAsPartner = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(agreement.partnerName)
-                    .font(.title2.bold())
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Creator")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text(agreement.creatorName)
+                            .font(.headline)
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text("Partner")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text(agreement.partnerName)
+                            .font(.headline)
+                    }
+                }
+
+                Divider()
 
                 Text(agreement.agreementText)
                     .font(.body)
@@ -84,20 +137,14 @@ struct ConsentDetailView: View {
                 Divider()
 
                 signatureSection(
-                    title: "Your Signature",
+                    title: "Creator's Signature",
                     data: agreement.creatorSignature
-                ) {
-                    signingAsPartner = false
-                    showingSignature = true
-                }
+                )
 
                 signatureSection(
-                    title: "Partner Signature",
+                    title: "Partner's Signature",
                     data: agreement.partnerSignature
-                ) {
-                    signingAsPartner = true
-                    showingSignature = true
-                }
+                )
 
                 if agreement.status == .signed, let signedAt = agreement.signedAt {
                     HStack {
@@ -112,23 +159,10 @@ struct ConsentDetailView: View {
         }
         .navigationTitle("Agreement")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showingSignature) {
-            SignatureView { imageData in
-                if signingAsPartner {
-                    agreement.partnerSignature = imageData
-                } else {
-                    agreement.creatorSignature = imageData
-                }
-                if agreement.creatorSignature != nil && agreement.partnerSignature != nil {
-                    agreement.status = .signed
-                    agreement.signedAt = Date()
-                }
-            }
-        }
     }
 
     @ViewBuilder
-    private func signatureSection(title: String, data: Data?, onSign: @escaping () -> Void) -> some View {
+    private func signatureSection(title: String, data: Data?) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.headline)
@@ -139,7 +173,8 @@ struct ConsentDetailView: View {
                     .frame(height: 100)
                     .border(Color.secondary.opacity(0.3))
             } else {
-                Button("Tap to Sign", action: onSign)
+                Text("Not yet signed")
+                    .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
                     .frame(height: 100)
                     .background(Color.secondary.opacity(0.1))

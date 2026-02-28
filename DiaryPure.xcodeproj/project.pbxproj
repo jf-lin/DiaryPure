@@ -7,18 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000010000000000000001 /* DiaryPureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001; };
-		A10000020000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020000000000000002; };
-		A10000030000000000000003 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030000000000000003; };
-		A10000040000000000000004 /* ConsentAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000040000000000000004; };
-		A10000050000000000000005 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000050000000000000005; };
-		A10000060000000000000006 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000060000000000000006; };
-		A10000070000000000000007 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000070000000000000007; };
-		A10000080000000000000008 /* DiaryEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080000000000000008; };
-		A10000090000000000000009 /* ConsentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000090000000000000009; };
-		A1000010000000000000000A /* ConsentCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000010000000000000000A; };
-		A1000011000000000000000B /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011000000000000000B; };
-		A1000012000000000000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000012000000000000000C; };
+		A10000010000000000000001 /* DiaryPureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* DiaryPureApp.swift */; };
+		A10000020000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020000000000000002 /* ContentView.swift */; };
+		A10000030000000000000003 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030000000000000003 /* DiaryEntry.swift */; };
+		A10000040000000000000004 /* ConsentAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000040000000000000004 /* ConsentAgreement.swift */; };
+		A10000050000000000000005 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000050000000000000005 /* AuthService.swift */; };
+		A10000060000000000000006 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000060000000000000006 /* AuthView.swift */; };
+		A10000070000000000000007 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000070000000000000007 /* DiaryListView.swift */; };
+		A10000080000000000000008 /* DiaryEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080000000000000008 /* DiaryEditorView.swift */; };
+		A10000090000000000000009 /* ConsentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000090000000000000009 /* ConsentListView.swift */; };
+		A1000010000000000000000A /* ConsentCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000010000000000000000A /* ConsentCreateView.swift */; };
+		A1000011000000000000000B /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011000000000000000B /* SignatureView.swift */; };
+		A1000012000000000000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000012000000000000000C /* Assets.xcassets */; };
+		A1000013000000000000000D /* AgreementTransferPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000013000000000000000D /* AgreementTransferPayload.swift */; };
+		A1000014000000000000000E /* ConsentTemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000014000000000000000E /* ConsentTemplateService.swift */; };
+		A1000015000000000000000F /* MultipeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000015000000000000000F /* MultipeerService.swift */; };
+		A10000160000000000000010 /* ConsentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000160000000000000010 /* ConsentReviewView.swift */; };
+		A10000170000000000000011 /* ConsentSigningSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000170000000000000011 /* ConsentSigningSessionView.swift */; };
+		A10000180000000000000012 /* ConsentJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000180000000000000012 /* ConsentJoinView.swift */; };
+		A10000190000000000000013 /* ConsentPartnerReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000190000000000000013 /* ConsentPartnerReviewView.swift */; };
+		A100001A0000000000000014 /* ConsentCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200001A0000000000000014 /* ConsentCompletionView.swift */; };
+		A100001B0000000000000016 /* SignatureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200001C0000000000000016 /* SignatureStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,16 @@
 		A2000010000000000000000A /* ConsentCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentCreateView.swift; sourceTree = "<group>"; };
 		A2000011000000000000000B /* SignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 		A2000012000000000000000C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2000013000000000000000D /* AgreementTransferPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTransferPayload.swift; sourceTree = "<group>"; };
+		A2000014000000000000000E /* ConsentTemplateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentTemplateService.swift; sourceTree = "<group>"; };
+		A2000015000000000000000F /* MultipeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerService.swift; sourceTree = "<group>"; };
+		A20000160000000000000010 /* ConsentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentReviewView.swift; sourceTree = "<group>"; };
+		A20000170000000000000011 /* ConsentSigningSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentSigningSessionView.swift; sourceTree = "<group>"; };
+		A20000180000000000000012 /* ConsentJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentJoinView.swift; sourceTree = "<group>"; };
+		A20000190000000000000013 /* ConsentPartnerReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentPartnerReviewView.swift; sourceTree = "<group>"; };
+		A200001A0000000000000014 /* ConsentCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentCompletionView.swift; sourceTree = "<group>"; };
+		A200001B0000000000000015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A200001C0000000000000016 /* SignatureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureStore.swift; sourceTree = "<group>"; };
 		A30000010000000000000001 /* DiaryPure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryPure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -48,7 +67,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A50000010000000000000001 /* Root */ = {
+		A50000010000000000000001 = {
 			isa = PBXGroup;
 			children = (
 				A50000020000000000000002 /* DiaryPure */,
@@ -65,6 +84,7 @@
 				A50000040000000000000004 /* Views */,
 				A50000080000000000000008 /* Services */,
 				A2000012000000000000000C /* Assets.xcassets */,
+				A200001B0000000000000015 /* Info.plist */,
 			);
 			path = DiaryPure;
 			sourceTree = "<group>";
@@ -74,6 +94,7 @@
 			children = (
 				A20000030000000000000003 /* DiaryEntry.swift */,
 				A20000040000000000000004 /* ConsentAgreement.swift */,
+				A2000013000000000000000D /* AgreementTransferPayload.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,6 +132,11 @@
 				A20000090000000000000009 /* ConsentListView.swift */,
 				A2000010000000000000000A /* ConsentCreateView.swift */,
 				A2000011000000000000000B /* SignatureView.swift */,
+				A20000160000000000000010 /* ConsentReviewView.swift */,
+				A20000170000000000000011 /* ConsentSigningSessionView.swift */,
+				A20000180000000000000012 /* ConsentJoinView.swift */,
+				A20000190000000000000013 /* ConsentPartnerReviewView.swift */,
+				A200001A0000000000000014 /* ConsentCompletionView.swift */,
 			);
 			path = Consent;
 			sourceTree = "<group>";
@@ -119,6 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				A20000050000000000000005 /* AuthService.swift */,
+				A2000014000000000000000E /* ConsentTemplateService.swift */,
+				A2000015000000000000000F /* MultipeerService.swift */,
+				A200001C0000000000000016 /* SignatureStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -174,7 +203,7 @@
 				en,
 				Base,
 			);
-			mainGroup = A50000010000000000000001 /* Root */;
+			mainGroup = A50000010000000000000001;
 			productRefGroup = A50000090000000000000009 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -211,6 +240,15 @@
 				A10000090000000000000009 /* ConsentListView.swift in Sources */,
 				A1000010000000000000000A /* ConsentCreateView.swift in Sources */,
 				A1000011000000000000000B /* SignatureView.swift in Sources */,
+				A100001B0000000000000016 /* SignatureStore.swift in Sources */,
+				A1000013000000000000000D /* AgreementTransferPayload.swift in Sources */,
+				A1000014000000000000000E /* ConsentTemplateService.swift in Sources */,
+				A1000015000000000000000F /* MultipeerService.swift in Sources */,
+				A10000160000000000000010 /* ConsentReviewView.swift in Sources */,
+				A10000170000000000000011 /* ConsentSigningSessionView.swift in Sources */,
+				A10000180000000000000012 /* ConsentJoinView.swift in Sources */,
+				A10000190000000000000013 /* ConsentPartnerReviewView.swift in Sources */,
+				A100001A0000000000000014 /* ConsentCompletionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +324,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5A9Z57B9LR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiaryPure/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -312,7 +352,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5A9Z57B9LR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiaryPure/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
