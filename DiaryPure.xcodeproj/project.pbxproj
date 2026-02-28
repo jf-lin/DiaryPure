@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* DiaryPureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001; };
+		A10000020000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020000000000000002; };
+		A10000030000000000000003 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030000000000000003; };
+		A10000040000000000000004 /* ConsentAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000040000000000000004; };
+		A10000050000000000000005 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000050000000000000005; };
+		A10000060000000000000006 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000060000000000000006; };
+		A10000070000000000000007 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000070000000000000007; };
+		A10000080000000000000008 /* DiaryEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080000000000000008; };
+		A10000090000000000000009 /* ConsentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000090000000000000009; };
+		A1000010000000000000000A /* ConsentCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000010000000000000000A; };
+		A1000011000000000000000B /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011000000000000000B; };
+		A1000012000000000000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000012000000000000000C; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000010000000000000001 /* DiaryPureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryPureApp.swift; sourceTree = "<group>"; };
+		A20000020000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000030000000000000003 /* DiaryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		A20000040000000000000004 /* ConsentAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentAgreement.swift; sourceTree = "<group>"; };
+		A20000050000000000000005 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A20000060000000000000006 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		A20000070000000000000007 /* DiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListView.swift; sourceTree = "<group>"; };
+		A20000080000000000000008 /* DiaryEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEditorView.swift; sourceTree = "<group>"; };
+		A20000090000000000000009 /* ConsentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentListView.swift; sourceTree = "<group>"; };
+		A2000010000000000000000A /* ConsentCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentCreateView.swift; sourceTree = "<group>"; };
+		A2000011000000000000000B /* SignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
+		A2000012000000000000000C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A30000010000000000000001 /* DiaryPure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryPure.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A50000010000000000000001 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A50000020000000000000002 /* DiaryPure */,
+				A50000090000000000000009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000020000000000000002 /* DiaryPure */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000001 /* DiaryPureApp.swift */,
+				A20000020000000000000002 /* ContentView.swift */,
+				A50000030000000000000003 /* Models */,
+				A50000040000000000000004 /* Views */,
+				A50000080000000000000008 /* Services */,
+				A2000012000000000000000C /* Assets.xcassets */,
+			);
+			path = DiaryPure;
+			sourceTree = "<group>";
+		};
+		A50000030000000000000003 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000030000000000000003 /* DiaryEntry.swift */,
+				A20000040000000000000004 /* ConsentAgreement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A50000040000000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A50000050000000000000005 /* Auth */,
+				A50000060000000000000006 /* Diary */,
+				A50000070000000000000007 /* Consent */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A50000050000000000000005 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A20000060000000000000006 /* AuthView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A50000060000000000000006 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				A20000070000000000000007 /* DiaryListView.swift */,
+				A20000080000000000000008 /* DiaryEditorView.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		A50000070000000000000007 /* Consent */ = {
+			isa = PBXGroup;
+			children = (
+				A20000090000000000000009 /* ConsentListView.swift */,
+				A2000010000000000000000A /* ConsentCreateView.swift */,
+				A2000011000000000000000B /* SignatureView.swift */,
+			);
+			path = Consent;
+			sourceTree = "<group>";
+		};
+		A50000080000000000000008 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000050000000000000005 /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A50000090000000000000009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A30000010000000000000001 /* DiaryPure.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000010000000000000001 /* DiaryPure */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80000010000000000000001 /* Build configuration list for PBXNativeTarget "DiaryPure" */;
+			buildPhases = (
+				A70000010000000000000001 /* Sources */,
+				A40000010000000000000001 /* Frameworks */,
+				A70000020000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DiaryPure;
+			productName = DiaryPure;
+			productReference = A30000010000000000000001 /* DiaryPure.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A90000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A60000010000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A80000020000000000000002 /* Build configuration list for PBXProject "DiaryPure" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A50000010000000000000001 /* Root */;
+			productRefGroup = A50000090000000000000009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A60000010000000000000001 /* DiaryPure */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A70000020000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000012000000000000000C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A70000010000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* DiaryPureApp.swift in Sources */,
+				A10000020000000000000002 /* ContentView.swift in Sources */,
+				A10000030000000000000003 /* DiaryEntry.swift in Sources */,
+				A10000040000000000000004 /* ConsentAgreement.swift in Sources */,
+				A10000050000000000000005 /* AuthService.swift in Sources */,
+				A10000060000000000000006 /* AuthView.swift in Sources */,
+				A10000070000000000000007 /* DiaryListView.swift in Sources */,
+				A10000080000000000000008 /* DiaryEditorView.swift in Sources */,
+				A10000090000000000000009 /* ConsentListView.swift in Sources */,
+				A1000010000000000000000A /* ConsentCreateView.swift in Sources */,
+				A1000011000000000000000B /* SignatureView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B10000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B10000020000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B10000030000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diarypure.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B10000040000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diarypure.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80000010000000000000001 /* Build configuration list for PBXNativeTarget "DiaryPure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B10000030000000000000003 /* Debug */,
+				B10000040000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80000020000000000000002 /* Build configuration list for PBXProject "DiaryPure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B10000010000000000000001 /* Debug */,
+				B10000020000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A90000010000000000000001 /* Project object */;
+}
