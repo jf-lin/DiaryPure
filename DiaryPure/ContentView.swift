@@ -15,6 +15,10 @@ struct ContentView: View {
                         .tabItem {
                             Label("Consent", systemImage: "signature")
                         }
+                    SignoutView()
+                        .tabItem {
+                            Label("Sign Out", systemImage: "rectangle.portrait.and.arrow.right")
+                        }
                 }
             } else {
                 AuthView()

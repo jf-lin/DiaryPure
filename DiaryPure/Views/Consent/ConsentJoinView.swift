@@ -9,7 +9,7 @@ struct ConsentJoinView: View {
     @StateObject private var multipeer = MultipeerService()
     @State private var receivedPayload: AgreementTransferPayload?
     @State private var cancellables = Set<AnyCancellable>()
-    @State private var pulseScale = 1.0
+    @State private var ripple = false
 
     var body: some View {
         NavigationStack {

@@ -22,6 +22,8 @@ struct ConsentSigningSessionView: View {
     @State private var discoveredPeers: [MCPeerID] = []
     @State private var cancellables = Set<AnyCancellable>()
 
+    @State private var ripple = false
+
     var body: some View {
         NavigationStack {
             Group {
@@ -86,8 +88,26 @@ struct ConsentSigningSessionView: View {
     private var searchingPhase: some View {
         VStack(spacing: 24) {
             Spacer()
-            ProgressView()
-                .scaleEffect(1.5)
+
+            ZStack {
+                ForEach(0..<3, id: \.self) { i in
+                    Circle()
+                        .stroke(Color.accentColor.opacity(ripple ? 0 : 0.4), lineWidth: 2)
+                        .frame(width: 80, height: 80)
+                        .scaleEffect(ripple ? 2.5 : 1)
+                        .animation(
+                            .easeOut(duration: 2.4)
+                                .repeatForever(autoreverses: false)
+                                .delay(Double(i) * 0.8),
+                            value: ripple
+                        )
+                }
+                Image(systemName: "antenna.radiowaves.left.and.right")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.tint)
+            }
+            .onAppear { ripple = true }
+
             Text("Searching for partner's device...")
                 .font(.headline)
             Text("Ask your partner to open \"Join Session\" on their device")

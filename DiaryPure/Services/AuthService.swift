@@ -42,11 +42,15 @@ final class AuthService: ObservableObject {
         }
     }
 
+    #if DEBUG
     func skipSignIn() {
         userID = "local"
+        userName = "Test User"
         isSignedIn = true
         UserDefaults.standard.set("local", forKey: userIDKey)
+        UserDefaults.standard.set("Test User", forKey: "appleUserName")
     }
+    #endif
 
     func signOut() {
         isSignedIn = false

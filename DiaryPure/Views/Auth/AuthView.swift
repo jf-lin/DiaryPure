@@ -30,11 +30,13 @@ struct AuthView: View {
             .frame(height: 50)
             .padding(.horizontal, 40)
 
+            #if DEBUG
             Button("Continue without signing in") {
                 authService.skipSignIn()
             }
             .font(.subheadline)
             .foregroundStyle(.secondary)
+            #endif
 
             Spacer()
                 .frame(height: 60)
