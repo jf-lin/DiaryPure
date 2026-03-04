@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F1C7A0A2F5547E6000FB855 /* SignoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C7A092F5547E6000FB855 /* SignoutView.swift */; };
+		1F1C7A0A2F5547E6000FB855 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C7A092F5547E6000FB855 /* ProfileView.swift */; };
 		A10000010000000000000001 /* DiaryPureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* DiaryPureApp.swift */; };
 		A10000020000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020000000000000002 /* ContentView.swift */; };
 		A10000030000000000000003 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030000000000000003 /* DiaryEntry.swift */; };
@@ -29,10 +29,14 @@
 		A10000190000000000000013 /* ConsentPartnerReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000190000000000000013 /* ConsentPartnerReviewView.swift */; };
 		A100001A0000000000000014 /* ConsentCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200001A0000000000000014 /* ConsentCompletionView.swift */; };
 		A100001B0000000000000016 /* SignatureStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200001C0000000000000016 /* SignatureStore.swift */; };
+		C10000010000000000000001 /* DiaryCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000001 /* DiaryCalendarView.swift */; };
+		C10000020000000000000002 /* DiaryMoodPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000020000000000000002 /* DiaryMoodPickerView.swift */; };
+		D10000010000000000000001 /* RichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000010000000000000001 /* RichTextEditor.swift */; };
+		D10000020000000000000002 /* DiaryNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000020000000000000002 /* DiaryNoteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F1C7A092F5547E6000FB855 /* SignoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutView.swift; sourceTree = "<group>"; };
+		1F1C7A092F5547E6000FB855 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A20000010000000000000001 /* DiaryPureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryPureApp.swift; sourceTree = "<group>"; };
 		A20000020000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A20000030000000000000003 /* DiaryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
@@ -55,6 +59,10 @@
 		A200001A0000000000000014 /* ConsentCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentCompletionView.swift; sourceTree = "<group>"; };
 		A200001B0000000000000015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A200001C0000000000000016 /* SignatureStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureStore.swift; sourceTree = "<group>"; };
+		C20000010000000000000001 /* DiaryCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCalendarView.swift; sourceTree = "<group>"; };
+		C20000020000000000000002 /* DiaryMoodPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryMoodPickerView.swift; sourceTree = "<group>"; };
+		D20000010000000000000001 /* RichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextEditor.swift; sourceTree = "<group>"; };
+		D20000020000000000000002 /* DiaryNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryNoteView.swift; sourceTree = "<group>"; };
 		A30000010000000000000001 /* DiaryPure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryPure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000060000000000000006 /* AuthView.swift */,
-				1F1C7A092F5547E6000FB855 /* SignoutView.swift */,
+				1F1C7A092F5547E6000FB855 /* ProfileView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -125,6 +133,10 @@
 			children = (
 				A20000070000000000000007 /* DiaryListView.swift */,
 				A20000080000000000000008 /* DiaryEditorView.swift */,
+				C20000010000000000000001 /* DiaryCalendarView.swift */,
+				C20000020000000000000002 /* DiaryMoodPickerView.swift */,
+				D20000010000000000000001 /* RichTextEditor.swift */,
+				D20000020000000000000002 /* DiaryNoteView.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -251,8 +263,12 @@
 				A10000170000000000000011 /* ConsentSigningSessionView.swift in Sources */,
 				A10000180000000000000012 /* ConsentJoinView.swift in Sources */,
 				A10000190000000000000013 /* ConsentPartnerReviewView.swift in Sources */,
-				1F1C7A0A2F5547E6000FB855 /* SignoutView.swift in Sources */,
+				1F1C7A0A2F5547E6000FB855 /* ProfileView.swift in Sources */,
 				A100001A0000000000000014 /* ConsentCompletionView.swift in Sources */,
+				C10000010000000000000001 /* DiaryCalendarView.swift in Sources */,
+				C10000020000000000000002 /* DiaryMoodPickerView.swift in Sources */,
+				D10000010000000000000001 /* RichTextEditor.swift in Sources */,
+				D10000020000000000000002 /* DiaryNoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,44 +1,44 @@
-import SwiftData
 import SwiftUI
 import UIKit
 
-struct DiaryEditorView: View {
-    @Environment(\.modelContext) private var modelContext
+struct DiaryMoodPickerView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let entry: DiaryEntry
+    let date: Date
+    let onSave: (String, NSAttributedString) -> Void
 
-    @State private var mood: String = ""
+    @State private var selectedMood: String?
     @State private var noteAttributedText: NSAttributedString = NSAttributedString()
 
     private let moods = ["😊", "😢", "😡", "😴", "🥰", "😰", "🤔", "🎉",
                          "😌", "🥺", "💪", "🌸", "☀️", "🌧️", "❤️", "💔"]
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 8)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 4)
 
     var body: some View {
-        VStack(spacing: 16) {
-            // Large mood display
-            Text(mood)
-                .font(.system(size: 64))
-                .padding(.top, 8)
+        VStack(spacing: 20) {
+            Text("How are you feeling?")
+                .font(.headline)
 
-            // Timestamp
-            Text(entry.createdAt, format: .dateTime.weekday(.wide).month(.abbreviated).day().hour().minute())
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            // Mood picker grid
-            LazyVGrid(columns: columns, spacing: 8) {
-                ForEach(moods, id: \.self) { m in
+            LazyVGrid(columns: columns, spacing: 12) {
+                ForEach(moods, id: \.self) { mood in
                     Button {
-                        withAnimation(.easeInOut(duration: 0.15)) { mood = m }
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            selectedMood = mood
+                        }
                     } label: {
-                        Text(m)
-                            .font(.title3)
-                            .frame(width: 36, height: 36)
+                        Text(mood)
+                            .font(.largeTitle)
+                            .frame(width: 56, height: 56)
                             .background {
-                                if mood == m {
-                                    Circle().fill(Color.accentColor.opacity(0.2))
+                                if selectedMood == mood {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.accentColor.opacity(0.2))
+                                }
+                            }
+                            .overlay {
+                                if selectedMood == mood {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .strokeBorder(Color.accentColor, lineWidth: 2)
                                 }
                             }
                     }
@@ -73,25 +73,23 @@ struct DiaryEditorView: View {
 
             Spacer()
         }
+        .padding(.top, 20)
+        .navigationTitle(date.formatted(.dateTime.month(.abbreviated).day()))
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") { dismiss() }
             }
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
-                    entry.mood = mood
-                    entry.attributedContent = noteAttributedText
-                    entry.updatedAt = Date()
-                    dismiss()
+                    if let mood = selectedMood {
+                        onSave(mood, noteAttributedText)
+                        dismiss()
+                    }
                 }
+                .disabled(selectedMood == nil)
                 .fontWeight(.semibold)
             }
-        }
-        .navigationTitle("Edit Entry")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            mood = entry.mood
-            noteAttributedText = entry.attributedContent
         }
     }
 }
