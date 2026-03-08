@@ -214,6 +214,7 @@ struct ConsentSigningSessionView: View {
     private func handlePartnerResponse(_ data: Data) {
         guard let payload = AgreementTransferPayload.decoded(from: data) else { return }
         agreement.partnerName = payload.partnerName
+        agreement.agreementText = payload.agreementText
         agreement.partnerSignature = payload.partnerSignature
         agreement.status = .signed
         agreement.signedAt = Date()

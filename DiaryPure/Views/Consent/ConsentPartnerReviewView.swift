@@ -31,7 +31,7 @@ struct ConsentPartnerReviewView: View {
 
                     Divider()
 
-                    Text(payload.agreementText)
+                    Text(finalAgreementText)
                         .font(.body)
 
                     Divider()
@@ -80,10 +80,22 @@ struct ConsentPartnerReviewView: View {
         }
     }
 
+    private var finalAgreementText: String {
+        ConsentTemplateService.render(
+            creatorName: payload.creatorName,
+            partnerName: partnerName,
+            date: payload.createdAt,
+            language: payload.language
+        )
+    }
+
     private func sendSignatureBack(_ signatureData: Data) {
-        // Send payload back with partner signature and name
+        let agreementText = finalAgreementText
+
+        // Send payload back with partner signature, name, and updated text
         var response = payload
         response.partnerName = partnerName
+        response.agreementText = agreementText
         response.partnerSignature = signatureData
         response.status = .signed
         response.signedAt = Date()
@@ -93,7 +105,7 @@ struct ConsentPartnerReviewView: View {
         let local = ConsentAgreement(
             creatorName: payload.creatorName,
             partnerName: partnerName,
-            agreementText: payload.agreementText,
+            agreementText: agreementText,
             language: payload.language,
             role: .partner
         )
