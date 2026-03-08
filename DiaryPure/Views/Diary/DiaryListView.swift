@@ -5,26 +5,50 @@ struct DiaryListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \DiaryEntry.createdAt, order: .reverse) private var entries: [DiaryEntry]
 
+    @State private var searchText = ""
+    @State private var entryToEdit: DiaryEntry?
+
+    private var filteredEntries: [DiaryEntry] {
+        guard !searchText.isEmpty else { return entries }
+        return entries.filter {
+            $0.mood.contains(searchText) ||
+            $0.contentPlain.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+
     var body: some View {
         NavigationStack {
             List {
-                ForEach(entries) { entry in
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
+                ForEach(filteredEntries) { entry in
+                    Button {
+                        entryToEdit = entry
+                    } label: {
+                        HStack(spacing: 12) {
                             Text(entry.mood)
-                            if !entry.contentPlain.isEmpty {
-                                Text(entry.contentPlain)
-                                    .font(.subheadline)
-                                    .lineLimit(1)
+                                .font(.title2)
+                            VStack(alignment: .leading, spacing: 2) {
+                                if !entry.contentPlain.isEmpty {
+                                    Text(entry.contentPlain)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.primary)
+                                        .lineLimit(1)
+                                }
+                                Text(entry.createdAt, style: .date)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
                             }
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .foregroundStyle(.tertiary)
                         }
-                        Text(entry.createdAt, style: .date)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        .padding(.vertical, 2)
                     }
+                    .buttonStyle(.plain)
                 }
                 .onDelete(perform: deleteEntries)
             }
+            .searchable(text: $searchText, prompt: "Search by mood or content")
             .overlay {
                 if entries.isEmpty {
                     ContentUnavailableView(
@@ -32,15 +56,23 @@ struct DiaryListView: View {
                         systemImage: "book",
                         description: Text("No diary entries yet.")
                     )
+                } else if filteredEntries.isEmpty {
+                    ContentUnavailableView.search(text: searchText)
                 }
             }
-            .navigationTitle("Diary")
+            .navigationTitle("All Entries")
+            .sheet(item: $entryToEdit) { entry in
+                NavigationStack {
+                    DiaryEditorView(entry: entry)
+                }
+                .presentationDetents([.medium, .large])
+            }
         }
     }
 
     private func deleteEntries(at offsets: IndexSet) {
         for index in offsets {
-            modelContext.delete(entries[index])
+            modelContext.delete(filteredEntries[index])
         }
     }
 }

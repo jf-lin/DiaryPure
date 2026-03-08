@@ -1,10 +1,12 @@
 import AuthenticationServices
+import LocalAuthentication
 import SwiftUI
 
 final class AuthService: ObservableObject {
     @Published var isSignedIn = false
     @Published var userID: String?
     @Published var userName: String?
+    @Published var isLocked = false
 
     private let userIDKey = "appleUserID"
 
@@ -52,8 +54,27 @@ final class AuthService: ObservableObject {
     }
     #endif
 
+    func lockApp() {
+        guard isSignedIn else { return }
+        isLocked = true
+    }
+
+    func authenticateWithBiometrics() {
+        let context = LAContext()
+        var error: NSError?
+        let policy: LAPolicy = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+            ? .deviceOwnerAuthenticationWithBiometrics
+            : .deviceOwnerAuthentication
+        context.evaluatePolicy(policy, localizedReason: "Unlock DiaryPure") { success, _ in
+            DispatchQueue.main.async {
+                if success { self.isLocked = false }
+            }
+        }
+    }
+
     func signOut() {
         isSignedIn = false
+        isLocked = false
         userID = nil
         userName = nil
         UserDefaults.standard.removeObject(forKey: userIDKey)

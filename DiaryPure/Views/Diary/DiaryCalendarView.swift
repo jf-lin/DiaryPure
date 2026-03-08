@@ -165,7 +165,7 @@ struct DiaryCalendarView: View {
                     Text(selectedDate, format: .dateTime.weekday(.wide).month(.abbreviated).day())
                         .font(.headline)
                     Spacer()
-                    if calendar.isDateInToday(selectedDate) {
+                    if calendar.compare(selectedDate, to: Date(), toGranularity: .day) != .orderedDescending {
                         Button {
                             showingMoodPicker = true
                         } label: {

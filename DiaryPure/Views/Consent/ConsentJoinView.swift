@@ -1,4 +1,5 @@
 import Combine
+import MultipeerConnectivity
 import SwiftData
 import SwiftUI
 
@@ -10,6 +11,8 @@ struct ConsentJoinView: View {
     @State private var receivedPayload: AgreementTransferPayload?
     @State private var cancellables = Set<AnyCancellable>()
     @State private var ripple = false
+    @State private var pendingInvitation: (peer: MCPeerID, handler: (Bool, MCSession?) -> Void)?
+    @State private var showingInvitationAlert = false
 
     var body: some View {
         NavigationStack {
@@ -32,6 +35,7 @@ struct ConsentJoinView: View {
                 if receivedPayload == nil {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {
+                            pendingInvitation?.handler(false, nil)
                             multipeer.disconnect()
                             dismiss()
                         }
@@ -45,20 +49,46 @@ struct ConsentJoinView: View {
         .onDisappear {
             multipeer.disconnect()
         }
+        .alert("Invitation Received", isPresented: $showingInvitationAlert) {
+            Button("Accept") {
+                if let invitation = pendingInvitation {
+                    multipeer.acceptInvitation(invitation.handler)
+                }
+                pendingInvitation = nil
+            }
+            Button("Decline", role: .destructive) {
+                pendingInvitation?.handler(false, nil)
+                pendingInvitation = nil
+            }
+        } message: {
+            if let peer = pendingInvitation?.peer {
+                Text(""\(peer.displayName)" wants to share a consent agreement with you.")
+            }
+        }
     }
 
     private var waitingView: some View {
         VStack(spacing: 24) {
             Spacer()
-            Image(systemName: "antenna.radiowaves.left.and.right")
-                .font(.system(size: 48))
-                .foregroundStyle(.tint)
-                .scaleEffect(pulseScale)
-                .animation(
-                    .easeInOut(duration: 1.2).repeatForever(autoreverses: true),
-                    value: pulseScale
-                )
-                .onAppear { pulseScale = 1.2 }
+
+            ZStack {
+                ForEach(0..<3, id: \.self) { i in
+                    Circle()
+                        .stroke(Color.accentColor.opacity(ripple ? 0 : 0.4), lineWidth: 2)
+                        .frame(width: 80, height: 80)
+                        .scaleEffect(ripple ? 2.5 : 1)
+                        .animation(
+                            .easeOut(duration: 2.4)
+                                .repeatForever(autoreverses: false)
+                                .delay(Double(i) * 0.8),
+                            value: ripple
+                        )
+                }
+                Image(systemName: "antenna.radiowaves.left.and.right")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.tint)
+            }
+            .onAppear { ripple = true }
 
             Text("Waiting for invitation...")
                 .font(.headline)
@@ -89,6 +119,9 @@ struct ConsentJoinView: View {
                     if let payload = AgreementTransferPayload.decoded(from: data) {
                         receivedPayload = payload
                     }
+                case .invitationReceived(let peer, let handler):
+                    pendingInvitation = (peer, handler)
+                    showingInvitationAlert = true
                 default:
                     break
                 }

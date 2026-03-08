@@ -66,6 +66,10 @@ final class MultipeerService: NSObject, ObservableObject {
         try? session.send(data, toPeers: [peer], with: .reliable)
     }
 
+    func acceptInvitation(_ handler: @escaping (Bool, MCSession?) -> Void) {
+        handler(true, session)
+    }
+
     func disconnect() {
         browser?.stopBrowsingForPeers()
         advertiser?.stopAdvertisingPeer()
@@ -132,8 +136,6 @@ extension MultipeerService: MCNearbyServiceBrowserDelegate {
 extension MultipeerService: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         DispatchQueue.main.async {
-            // Auto-accept invitations
-            invitationHandler(true, self.session)
             self.events.send(.invitationReceived(peerID, invitationHandler))
         }
     }
