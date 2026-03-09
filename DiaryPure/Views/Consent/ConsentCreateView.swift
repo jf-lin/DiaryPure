@@ -8,6 +8,8 @@ struct ConsentCreateView: View {
 
     @State private var creatorName = ""
     @State private var language: AgreementLanguage = ConsentTemplateService.deviceLanguage()
+    @State private var hasExpiration = false
+    @State private var expirationDate = Calendar.current.date(byAdding: .year, value: 1, to: Date()) ?? Date()
     @State private var showingReview = false
     @State private var showingSigningSession = false
     @State private var createdAgreement: ConsentAgreement?
@@ -24,6 +26,16 @@ struct ConsentCreateView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+            }
+            Section {
+                Toggle("Set expiration date", isOn: $hasExpiration)
+                if hasExpiration {
+                    DatePicker("Expires on", selection: $expirationDate, in: Date()..., displayedComponents: .date)
+                }
+            } header: {
+                Text("Expiration")
+            } footer: {
+                Text("The agreement will expire on the selected date")
             }
         }
         .onAppear {
@@ -55,6 +67,9 @@ struct ConsentCreateView: View {
                         language: language,
                         role: .creator
                     )
+                    if hasExpiration {
+                        agreement.expiresAt = expirationDate
+                    }
                     modelContext.insert(agreement)
                     createdAgreement = agreement
                     showingReview = false

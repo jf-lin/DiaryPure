@@ -10,6 +10,8 @@ struct DiaryCalendarView: View {
     @State private var selectedDate: Date?
     @State private var showingMoodPicker = false
     @State private var entryToEdit: DiaryEntry?
+    @State private var showingExport = false
+    @State private var showingInsights = false
 
     private let calendar = Calendar.current
     private let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -26,6 +28,25 @@ struct DiaryCalendarView: View {
             }
             .navigationTitle("Diary")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button {
+                            showingInsights = true
+                        } label: {
+                            Label("Insights", systemImage: "chart.bar.fill")
+                        }
+                        Button {
+                            showingExport = true
+                        } label: {
+                            Label("Export", systemImage: "square.and.arrow.up")
+                        }
+                        .disabled(allEntries.isEmpty)
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+            }
             .sheet(isPresented: $showingMoodPicker) {
                 NavigationStack {
                     DiaryMoodPickerView(date: selectedDate ?? Date()) { mood, attrText in
@@ -46,6 +67,12 @@ struct DiaryCalendarView: View {
                     DiaryEditorView(entry: entry)
                 }
                 .presentationDetents([.medium, .large])
+            }
+            .sheet(isPresented: $showingExport) {
+                DiaryExportView(entries: allEntries)
+            }
+            .sheet(isPresented: $showingInsights) {
+                DiaryInsightsView()
             }
         }
     }

@@ -37,6 +37,7 @@ final class ConsentAgreement {
     var partnerSignature: Data?
     var status: AgreementStatus
     var signedAt: Date?
+    var expiresAt: Date?
     var createdAt: Date
 
     init(
@@ -58,5 +59,14 @@ final class ConsentAgreement {
 
     var isSigned: Bool {
         status == .signed
+    }
+
+    var isExpired: Bool {
+        guard let expiresAt else { return false }
+        return Date() > expiresAt
+    }
+
+    var isActive: Bool {
+        isSigned && !isExpired
     }
 }

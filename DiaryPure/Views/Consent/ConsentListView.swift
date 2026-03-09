@@ -25,6 +25,15 @@ struct ConsentListView: View {
                             .font(.headline)
                             HStack {
                                 statusBadge(for: agreement.status)
+                                if agreement.isExpired {
+                                    Text("Expired")
+                                        .font(.caption)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 2)
+                                        .background(Color.red.opacity(0.2))
+                                        .foregroundStyle(.red)
+                                        .clipShape(Capsule())
+                                }
                                 if agreement.role == .partner {
                                     Text("Partner")
                                         .font(.caption)
@@ -107,6 +116,7 @@ struct ConsentListView: View {
 
 struct ConsentDetailView: View {
     @Bindable var agreement: ConsentAgreement
+    @State private var showingExport = false
 
     var body: some View {
         ScrollView {
@@ -154,11 +164,36 @@ struct ConsentDetailView: View {
                             .font(.caption)
                     }
                 }
+
+                if let expiresAt = agreement.expiresAt {
+                    HStack {
+                        Image(systemName: agreement.isExpired ? "exclamationmark.triangle.fill" : "calendar")
+                            .foregroundStyle(agreement.isExpired ? .red : .secondary)
+                        Text(agreement.isExpired ? "Expired on" : "Expires on")
+                            .font(.caption)
+                        Text(expiresAt.formatted(date: .long, time: .omitted))
+                            .font(.caption)
+                    }
+                    .foregroundStyle(agreement.isExpired ? .red : .primary)
+                }
             }
             .padding()
         }
         .navigationTitle("Agreement")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showingExport = true
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .disabled(!agreement.isSigned)
+            }
+        }
+        .sheet(isPresented: $showingExport) {
+            ConsentExportView(agreement: agreement)
+        }
     }
 
     @ViewBuilder
