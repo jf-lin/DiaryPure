@@ -23,6 +23,10 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Profile", systemImage: "person.crop.circle")
                             }
+                        SettingsView()
+                            .tabItem {
+                                Label("Settings", systemImage: "gear")
+                            }
                     }
                 }
             } else {

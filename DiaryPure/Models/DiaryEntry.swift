@@ -8,6 +8,7 @@ final class DiaryEntry {
     @Attribute(originalName: "content") var contentPlain: String
     var contentRTF: Data?
     var mood: String
+    var photoData: Data?
     var createdAt: Date
     var updatedAt: Date
 

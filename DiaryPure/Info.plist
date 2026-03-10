@@ -4,6 +4,8 @@
 <dict>
 	<key>NSFaceIDUsageDescription</key>
 	<string>DiaryPure uses Face ID to protect your private diary and consent agreements.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>DiaryPure needs access to your photo library to attach photos to diary entries.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>DiaryPure uses the local network to connect with your partner's device for co-signing consent agreements.</string>
 	<key>NSBonjourServices</key>

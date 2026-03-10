@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import UIKit
 
 struct DiaryListView: View {
     @Environment(\.modelContext) private var modelContext
@@ -24,8 +25,16 @@ struct DiaryListView: View {
                         entryToEdit = entry
                     } label: {
                         HStack(spacing: 12) {
-                            Text(entry.mood)
-                                .font(.title2)
+                            if let photoData = entry.photoData, let uiImage = UIImage(data: photoData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                            } else {
+                                Text(entry.mood)
+                                    .font(.title2)
+                            }
                             VStack(alignment: .leading, spacing: 2) {
                                 if !entry.contentPlain.isEmpty {
                                     Text(entry.contentPlain)

@@ -49,9 +49,10 @@ struct DiaryCalendarView: View {
             }
             .sheet(isPresented: $showingMoodPicker) {
                 NavigationStack {
-                    DiaryMoodPickerView(date: selectedDate ?? Date()) { mood, attrText in
+                    DiaryMoodPickerView(date: selectedDate ?? Date()) { mood, attrText, photoData in
                         let entry = DiaryEntry(mood: mood)
                         entry.attributedContent = attrText
+                        entry.photoData = photoData
                         if let date = selectedDate {
                             entry.createdAt = calendar.date(bySettingHour: calendar.component(.hour, from: Date()),
                                                             minute: calendar.component(.minute, from: Date()),

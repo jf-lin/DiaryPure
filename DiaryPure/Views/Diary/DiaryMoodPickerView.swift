@@ -5,10 +5,11 @@ struct DiaryMoodPickerView: View {
     @Environment(\.dismiss) private var dismiss
 
     let date: Date
-    let onSave: (String, NSAttributedString) -> Void
+    let onSave: (String, NSAttributedString, Data?) -> Void
 
     @State private var selectedMood: String?
     @State private var noteAttributedText: NSAttributedString = NSAttributedString()
+    @State private var photoData: Data?
 
     private let moods = ["😊", "😢", "😡", "😴", "🥰", "😰", "🤔", "🎉",
                          "😌", "🥺", "💪", "🌸", "☀️", "🌧️", "❤️", "💔"]
@@ -71,6 +72,9 @@ struct DiaryMoodPickerView: View {
             .buttonStyle(.plain)
             .padding(.horizontal)
 
+            DiaryPhotoPickerView(photoData: $photoData)
+                .padding(.horizontal)
+
             Spacer()
         }
         .padding(.top, 20)
@@ -83,7 +87,7 @@ struct DiaryMoodPickerView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
                     if let mood = selectedMood {
-                        onSave(mood, noteAttributedText)
+                        onSave(mood, noteAttributedText, photoData)
                         dismiss()
                     }
                 }

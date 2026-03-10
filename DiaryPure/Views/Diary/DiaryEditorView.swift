@@ -10,6 +10,7 @@ struct DiaryEditorView: View {
 
     @State private var mood: String = ""
     @State private var noteAttributedText: NSAttributedString = NSAttributedString()
+    @State private var photoData: Data?
 
     private let moods = ["😊", "😢", "😡", "😴", "🥰", "😰", "🤔", "🎉",
                          "😌", "🥺", "💪", "🌸", "☀️", "🌧️", "❤️", "💔"]
@@ -71,6 +72,9 @@ struct DiaryEditorView: View {
             .buttonStyle(.plain)
             .padding(.horizontal)
 
+            DiaryPhotoPickerView(photoData: $photoData)
+                .padding(.horizontal)
+
             Spacer()
         }
         .toolbar {
@@ -81,6 +85,7 @@ struct DiaryEditorView: View {
                 Button("Save") {
                     entry.mood = mood
                     entry.attributedContent = noteAttributedText
+                    entry.photoData = photoData
                     entry.updatedAt = Date()
                     dismiss()
                 }
@@ -92,6 +97,7 @@ struct DiaryEditorView: View {
         .onAppear {
             mood = entry.mood
             noteAttributedText = entry.attributedContent
+            photoData = entry.photoData
         }
     }
 }
