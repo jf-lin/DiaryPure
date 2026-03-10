@@ -62,7 +62,7 @@ struct ConsentJoinView: View {
             }
         } message: {
             if let peer = pendingInvitation?.peer {
-                Text(""\(peer.displayName)" wants to share a consent agreement with you.")
+                Text("\"\(peer.displayName)\" wants to share a consent agreement with you.")
             }
         }
     }
